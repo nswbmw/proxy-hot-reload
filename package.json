@@ -1,0 +1,29 @@
+{
+  "name": "proxy-hot-reload",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nswbmw",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "1.7.0",
+    "debug": "2.6.8",
+    "glob": "7.1.2",
+    "lodash": "4.17.4",
+    "shimmer": "1.1.0"
+  },
+  "node": {
+    "engine": ">6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nswbmw/proxy-hot-reload.git"
+  },
+  "keyword": [
+    "hot-reload",
+    "Proxy"
+  ]
+}
