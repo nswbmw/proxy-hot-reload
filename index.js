@@ -42,7 +42,9 @@ module.exports = function proxyHotReload (opts) {
           if ('_exports' in require.cache[path]) {
             delete require.cache[path]
             require(path)
-            debug('Reload file: %s', path)
+            if (path in loadedFiles) {
+              debug('Reload file: %s', path)
+            }
           }
         }
       } catch (e) {
