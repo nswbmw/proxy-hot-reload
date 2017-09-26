@@ -1,6 +1,6 @@
 {
   "name": "proxy-hot-reload",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,5 +25,12 @@
   "keyword": [
     "hot-reload",
     "Proxy"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-config-standard": "10.2.1",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-node": "5.1.1",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "3.0.1"
+  }
 }

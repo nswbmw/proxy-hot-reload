@@ -2,6 +2,14 @@
 
 Node.js application hot reload with `Proxy`.
 
+**NB**: proxy-hot-reload can only proxy modules that return an plain object, like:
+
+```js
+module.export = { ... }
+// or
+exports.xxx = ...
+```
+
 ### Install
 
 ```sh
@@ -17,7 +25,7 @@ $ npm i proxy-hot-reload --save
 
 if (process.env.NODE_ENV !== 'production') {
   require('proxy-hot-reload')({
-    includes: '**/user.js'
+    includes: '**/*.js'
   });
 }
 
@@ -41,6 +49,10 @@ module.exports = {
 }
 ```
 
+```sh
+DEBUG=proxy-hot-reload node app.js
+```
+
 Then try to modify user.js, access to `localhost:3000`.
 
 ### Usage
@@ -51,6 +63,13 @@ option:
 
 1. includes: as `PROXY_HOT_RELOAD_INCLUDES`, files should be includes, see [glob](https://github.com/isaacs/node-glob).
 2. excludes: as `PROXY_HOT_RELOAD_EXCLUDES`, files should be excludes, see [glob](https://github.com/isaacs/node-glob).
+3. watchedFileChangedButNotReloadCache: default:
+
+```js
+function (filename) {
+  debug(`${filename} changed, but not reload cache!`)
+}
+```
 
 ### Note
 
