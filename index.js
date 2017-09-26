@@ -24,8 +24,8 @@ const globOpt = {
 
 module.exports = function proxyHotReload (opts) {
   opts = opts || {}
-  const includes = glob.sync(process.env.PROXY_HOT_RELOAD_INCLUDES || opts.includes || '**/*.js', globOpt) || []
-  const excludes = glob.sync(process.env.PROXY_HOT_RELOAD_EXCLUDES || opts.excludes || '**/node_modules/**', globOpt) || []
+  const includes = opts.includeFiles || glob.sync(process.env.PROXY_HOT_RELOAD_INCLUDES || opts.includes || '**/*.js', globOpt) || []
+  const excludes = opts.excludeFiles || glob.sync(process.env.PROXY_HOT_RELOAD_EXCLUDES || opts.excludes || '**/node_modules/**', globOpt) || []
   const watchedFileChangedButNotReloadCache = opts.watchedFileChangedButNotReloadCache || function (filename) {
     debug(`${filename} changed, but not reload cache!`)
   }

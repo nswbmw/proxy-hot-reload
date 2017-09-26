@@ -61,8 +61,8 @@ Then try to modify user.js, access to `localhost:3000`.
 
 option:
 
-1. includes: as `PROXY_HOT_RELOAD_INCLUDES`, files should be includes, see [glob](https://github.com/isaacs/node-glob).
-2. excludes: as `PROXY_HOT_RELOAD_EXCLUDES`, files should be excludes, see [glob](https://github.com/isaacs/node-glob).
+1. includeFiles([obsolute filepath]) || includes(glob pattern string): as `PROXY_HOT_RELOAD_INCLUDES`, files should be includes, see [glob](https://github.com/isaacs/node-glob).
+2. excludeFiles([obsolute filepath]) || excludes(glob pattern string): as `PROXY_HOT_RELOAD_EXCLUDES`, files should be excludes, see [glob](https://github.com/isaacs/node-glob).
 3. watchedFileChangedButNotReloadCache: default:
 
 ```js
