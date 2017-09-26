@@ -4,7 +4,7 @@ Node.js application hot reload with `Proxy`.
 
 ### Install
 
-```
+```sh
 $ npm i proxy-hot-reload --save
 ```
 
@@ -12,12 +12,12 @@ $ npm i proxy-hot-reload --save
 
 **app.js**
 
-```
+```js
 'use strict';
 
 if (process.env.NODE_ENV !== 'production') {
   require('proxy-hot-reload')({
-    includes: '**/*.js'
+    includes: '**/user.js'
   });
 }
 
@@ -34,7 +34,7 @@ app.listen(3000);
 
 **user.js**
 
-```
+```js
 module.exports = {
   id: 1,
   age: 19

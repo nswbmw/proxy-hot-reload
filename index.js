@@ -6,7 +6,7 @@ if (typeof Proxy !== 'function' && typeof Reflect !== 'object') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  console.warn('Warning: proxy-hot-reload should not used in production environment!');
+  console.warn('Warning: proxy-hot-reload should not be used in production environment!');
 }
 
 const Module = require('module');
