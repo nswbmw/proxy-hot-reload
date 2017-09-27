@@ -16,6 +16,7 @@ const glob = require('glob')
 const shimmer = require('shimmer')
 const chokidar = require('chokidar')
 const debug = require('debug')('proxy-hot-reload')
+const debugDetail = require('debug')('proxy-hot-reload:detail')
 
 const globOpt = {
   nodir: true,
@@ -39,13 +40,18 @@ module.exports = function proxyHotReload (opts) {
     .on('change', (path) => {
       try {
         if (require.cache[path]) {
-          if ('_exports' in require.cache[path]) {
+          const _exports = require.cache[path].exports
+          if (_.isPlainObject(_exports) && !_.isEmpty(_exports)) {
             delete require.cache[path]
             require(path)
             if (path in loadedFiles) {
               debug('Reload file: %s', path)
             }
+          } else {
+            watchedFileChangedButNotReloadCache(path)
           }
+        } else {
+          watchedFileChangedButNotReloadCache(path)
         }
       } catch (e) {
         console.error('proxy-hot-reload reload `%s` error:', path)
@@ -69,7 +75,6 @@ module.exports = function proxyHotReload (opts) {
         this._exports = this.exports
         // non-object return original compiled code
         if (!_.isPlainObject(this._exports)) {
-          watchedFileChangedButNotReloadCache(filename)
           return result
         }
         if (!(filename in loadedFiles)) {
@@ -83,10 +88,10 @@ module.exports = function proxyHotReload (opts) {
             get: function (target, key, receiver) {
               try {
                 if (require.cache[filename]) {
-                  debug('Get `%s` from require.cache[%s]', key, filename)
+                  debugDetail('Get `%s` from require.cache[%s]', key, filename)
                   return require.cache[filename]._exports[key]
                 } else {
-                  debug('Get `%s` from original %s', key, filename)
+                  debugDetail('Get `%s` from original %s', key, filename)
                   return Reflect.get(target, key, receiver)
                 }
               } catch (e) {
